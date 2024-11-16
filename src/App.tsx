@@ -52,6 +52,7 @@ export const App: React.FC = () => {
 
             <div className="block">
               <TodoFilter
+                searchQuery={searchQuery}
                 onStatusChange={setStatusFilter}
                 onSearchChange={setSearchQuery}
               />

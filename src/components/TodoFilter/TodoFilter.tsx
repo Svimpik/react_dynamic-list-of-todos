@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-
 interface Props {
+  searchQuery: string;
   onStatusChange: (status: string) => void;
   onSearchChange: (search: string) => void;
 }
@@ -8,20 +7,17 @@ interface Props {
 export const TodoFilter: React.FC<Props> = ({
   onStatusChange,
   onSearchChange,
+  searchQuery,
 }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
   const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onStatusChange(event.target.value);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onSearchChange(event.target.value);
-    setSearchQuery(event.target.value);
   };
 
   const handleClearSearch = () => {
-    setSearchQuery('');
     onStatusChange('all');
     onSearchChange('');
   };
@@ -58,6 +54,7 @@ export const TodoFilter: React.FC<Props> = ({
               data-cy="clearSearchButton"
               type="button"
               className="delete"
+              value={searchQuery}
               onClick={handleClearSearch}
             />
           )}
